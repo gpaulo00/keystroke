@@ -1,0 +1,13 @@
+<div *ngIf="key">
+  <h2>{{ key.title }}</h2>
+  <div>
+    <label>Usuario:
+      <input [(ngModel)]="key.user"/>
+    </label>
+    <label>Contraseña:
+      <input [(ngModel)]="key.pass"/>
+    </label>
+  </div>
+  <button (click)="goBack()">go back</button>
+  <button (click)="save()">save</button>
+</div>

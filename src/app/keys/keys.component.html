@@ -2,10 +2,9 @@
 
 <ul>
   <li *ngFor="let key of keys">
-    <div>
+    <a routerLink="/detail/{{key.id}}">
       <span class="keyName">{{ key.title }}</span>
-      <span *ngIf="key.user" class="keyUser">{{ key.user }}</span>
-      <span class="keyPass">{{ key.pass }}</span>
-    </div>
+    </a>
+    <button title="remove" (click)="remove(key)">x</button>
   </li>
 </ul>

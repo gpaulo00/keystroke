@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import { KeysService } from '../keys.service';
 import { Key } from '../key';
 
@@ -9,15 +10,16 @@ import { Key } from '../key';
 })
 export class KeysComponent implements OnInit {
   keys: Key[];
-  constructor(private keysService: KeysService) { }
-
-  getKeys(): void {
-    this.keysService.getKeys()
-      .subscribe(keys => this.keys = keys);
-  }
+  constructor(private keyService: KeysService) { }
 
   ngOnInit() {
-    this.getKeys();
+    this.keyService.keys$.subscribe(keys => {
+      this.keys = keys;
+    });
   }
 
+  remove(key: Key): void {
+    this.keyService.remove(key.id)
+      .subscribe();
+  }
 }
