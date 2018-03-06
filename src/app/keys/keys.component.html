@@ -1,0 +1,11 @@
+<h2>My Keys</h2>
+
+<ul>
+  <li *ngFor="let key of keys">
+    <div>
+      <span class="keyName">{{ key.title }}</span>
+      <span *ngIf="key.user" class="keyUser">{{ key.user }}</span>
+      <span class="keyPass">{{ key.pass }}</span>
+    </div>
+  </li>
+</ul>
