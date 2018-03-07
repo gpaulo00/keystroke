@@ -4,7 +4,7 @@ using **Web Storage** technologies.
 
 ## Prerequisites
 You must have some things before you can run this:
-- Node
+- [NodeJS](https://nodejs.org/en/download/)
 - [Angular CLI](https://github.com/angular/angular-cli)
 
 ## Development server
@@ -29,9 +29,8 @@ ng e2e
 ```
 
 ## Built With
-* JavaScript - Programming Language
-* Yarn - Package Manager
-* Angular - JavaScript Frontend Framework
+* [Yarn](https://yarnpkg.com/docs/install) - Package Manager
+* [Angular](https://angular.io/) - JavaScript Framework
 
 ## Versioning
 I use [SemVer](http://semver.org/) for versioning.

@@ -2,3 +2,16 @@
 
 @import "~normalize.css";
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+/* uppercase buttons */
+[mat-raised-button], [mat-button] {
+  text-transform: uppercase;
+}
+
+.common-top {
+  margin-top: 50px;
+}
+
+.extra-top {
+  margin-top: 20px;
+}

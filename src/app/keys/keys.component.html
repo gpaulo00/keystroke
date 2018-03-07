@@ -1,10 +1,12 @@
-<h2>My Keys</h2>
 
-<ul>
-  <li *ngFor="let key of keys">
-    <a routerLink="/detail/{{key.id}}">
-      <span class="keyName">{{ key.title }}</span>
-    </a>
-    <button title="remove" (click)="remove(key)">x</button>
-  </li>
-</ul>
+<mat-grid-list cols="6" rowHeight="100px">
+  <mat-grid-tile *ngFor="let key of keys">
+    <mat-card class="key-card" routerLink="/detail/{{ key.id }}">
+      <span class="mat-title">{{ key.title }}</span>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>
+
+<a mat-fab routerLink="/add" class="fixed-fab">
+  <mat-icon aria-label="add a new key">add</mat-icon>
+</a>

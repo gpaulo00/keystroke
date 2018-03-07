@@ -1,11 +1,16 @@
 
-<div class="extra-top" fxLayoutAlign="center center" fxLayout="row">
-  <mat-card *ngIf="key">
+<div class="extra-top" fxLayoutAlign="center" fxLayout="row">
+  <mat-card>
     <mat-card-title>
-      <span class="key-title">{{ key.title }}</span>
+      Nueva Clave
     </mat-card-title>
 
     <mat-card-content>
+      <mat-form-field>
+        <input matInput placeholder="Nombre" [(ngModel)]="key.title">
+      </mat-form-field>
+      <br>
+
       <mat-form-field>
         <input matInput placeholder="Usuario" [(ngModel)]="key.user">
       </mat-form-field>
@@ -16,7 +21,7 @@
 
     <mat-card-actions align="end">
       <a color="accent" mat-button (click)="goBack()">cancelar</a>
-      <a color="accent" mat-raised-button (click)="save()">guardar</a>
+      <a color="accent" mat-raised-button (click)="save()">añadir</a>
     </mat-card-actions>
   </mat-card>
 </div>

@@ -65,4 +65,19 @@ export class KeyService {
       }),
     );
   }
+
+  /**
+   * Adds a new key into the system.
+   * @param {Key} key
+   * @returns {Observable<Key>}
+   */
+  add(key: Key): Observable<Key> {
+    return this.keys$.pipe(
+      take(1),
+      map((keys: Key[]) => {
+        this.keys$.next(keys.concat(key));
+        return key;
+      })
+    )
+  }
 }

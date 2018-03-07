@@ -10,13 +10,15 @@ import { KeysComponent } from './keys/keys.component';
 import { KeyService } from './keys.service';
 import { AppRoutingModule } from './app-routing.module';
 import { KeyDetailComponent } from './key-detail/key-detail.component';
-import { MaterialModule } from './material.module';
+import { MaterialModule } from './material/material.module';
+import { KeyInsertComponent } from './key-insert/key-insert.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     KeysComponent,
-    KeyDetailComponent
+    KeyDetailComponent,
+    KeyInsertComponent
   ],
   imports: [
     BrowserModule,
