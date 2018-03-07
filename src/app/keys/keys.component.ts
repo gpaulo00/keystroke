@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { KeysService } from '../keys.service';
+import { KeyService } from '../keys.service';
 import { Key } from '../key';
 
 @Component({
@@ -10,7 +10,7 @@ import { Key } from '../key';
 })
 export class KeysComponent implements OnInit {
   keys: Key[];
-  constructor(private keyService: KeysService) { }
+  constructor(private keyService: KeyService) { }
 
   ngOnInit() {
     this.keyService.keys$.subscribe(keys => {

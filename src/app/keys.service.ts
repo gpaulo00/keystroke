@@ -13,15 +13,25 @@ const KEYS: Key[] = [
 ];
 
 @Injectable()
-export class KeysService {
+export class KeyService {
   keys$: BehaviorSubject<Key[]> = new BehaviorSubject(KEYS);
 
   constructor() { }
 
+  /**
+   * Gets a Key from the system.
+   * @param {string} id
+   * @returns {Observable<Key>}
+   */
   get(id: string): Observable<Key> {
     return of(this.keys$.getValue().find(key => key.id === id));
   }
 
+  /**
+   * Updates a Key in the system.
+   * @param {Key} key
+   * @returns {Observable<Key>}
+   */
   update(key: Key): Observable<Key> {
     return Observable.create((ob) => {
       this.keys$.next(this.keys$.getValue().map((item) => {
@@ -37,6 +47,11 @@ export class KeysService {
     });
   }
 
+  /**
+   * Removes a Key from the system.
+   * @param {string} id
+   * @returns {Observable<boolean>}
+   */
   remove(id: string): Observable<boolean> {
     return this.keys$.pipe(
       take(1),

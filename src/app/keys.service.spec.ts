@@ -1,15 +1,15 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { KeysService } from './keys.service';
+import { KeyService } from './keys.service';
 
-describe('KeysService', () => {
+describe('KeyService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [KeysService]
+      providers: [KeyService]
     });
   });
 
-  it('should be created', inject([KeysService], (service: KeysService) => {
+  it('should be created', inject([KeyService], (service: KeyService) => {
     expect(service).toBeTruthy();
   }));
 });

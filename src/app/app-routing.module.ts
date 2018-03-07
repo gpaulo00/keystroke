@@ -5,8 +5,7 @@ import { KeysComponent } from './keys/keys.component';
 import { KeyDetailComponent } from './key-detail/key-detail.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/keys', pathMatch: 'full' },
-  { path: 'keys', component: KeysComponent },
+  { path: '', component: KeysComponent },
   { path: 'detail/:id', component: KeyDetailComponent },
 ];
 
