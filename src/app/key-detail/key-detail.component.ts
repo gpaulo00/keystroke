@@ -25,7 +25,7 @@ export class KeyDetailComponent implements OnInit {
 
   getKey(): void {
     const id = <string>this.route.snapshot.paramMap.get('id');
-    this.keyService.get(id)
+    this.keyService.get(parseInt(id))
       .subscribe(key => this.key = key);
   }
 

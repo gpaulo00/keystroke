@@ -18,7 +18,6 @@ export class KeyInsertComponent implements OnInit {
 
   ngOnInit() {
     this.key = new Key();
-    this.key.id = Math.random().toString();
   }
 
   goBack(): void {

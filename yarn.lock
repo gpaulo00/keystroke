@@ -177,6 +177,12 @@
   dependencies:
     tslib "^1.7.1"
 
+"@angular/service-worker@^5.2.8":
+  version "5.2.8"
+  resolved "https://registry.yarnpkg.com/@angular/service-worker/-/service-worker-5.2.8.tgz#4bd57edc560b7a1b7a33c391a5f3771e18c851a7"
+  dependencies:
+    tslib "^1.7.1"
+
 "@ngtools/json-schema@1.2.0":
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@ngtools/json-schema/-/json-schema-1.2.0.tgz#06e5ecd29e9a37d260a447dd873ea2becd228c4f"
@@ -221,10 +227,6 @@
   resolved "https://registry.yarnpkg.com/@types/jasminewd2/-/jasminewd2-2.0.3.tgz#0d2886b0cbdae4c0eeba55e30792f584bf040a95"
   dependencies:
     "@types/jasmine" "*"
-
-"@types/lodash@^4.14.104":
-  version "4.14.104"
-  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.104.tgz#53ee2357fa2e6e68379341d92eb2ecea4b11bb80"
 
 "@types/node@^6.0.46", "@types/node@~6.0.60":
   version "6.0.101"
@@ -1820,6 +1822,10 @@ detective@^4.0.0:
   dependencies:
     acorn "^5.2.1"
     defined "^1.0.0"
+
+dexie@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/dexie/-/dexie-2.0.2.tgz#e9f62ef8164a37cab954dbcb65dd3e749fb7108c"
 
 di@^0.0.1:
   version "0.0.1"

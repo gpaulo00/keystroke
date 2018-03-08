@@ -1,10 +1,14 @@
 
-/**
- * Describes a credential stored in the system.
- */
-export class Key {
-  id: string;
+export interface IKey {
+  id?: number;
   title: string;
-  user: string | null;
+  user?: string;
+  pass: string;
+}
+
+export class Key implements IKey {
+  id?: number;
+  title: string;
+  user?: string;
   pass: string;
 }

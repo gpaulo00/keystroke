@@ -5,6 +5,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
+
 import { AppComponent } from './app.component';
 import { KeysComponent } from './keys/keys.component';
 import { KeyService } from './keys.service';
@@ -22,6 +25,7 @@ import { KeyInsertComponent } from './key-insert/key-insert.component';
   ],
   imports: [
     BrowserModule,
+    ServiceWorkerModule.register('/ngsw-worker.js', {enabled: environment.production}),
     BrowserAnimationsModule,
     FlexLayoutModule,
     FormsModule,

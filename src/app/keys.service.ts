@@ -1,30 +1,38 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { of } from 'rxjs/observable/of';
-import * as _ from 'lodash';
+import Dexie from 'dexie';
 
-import { Key } from './key';
+import { IKey, Key } from './key';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { map, take } from 'rxjs/operators';
-
-const KEYS: Key[] = [
-  { id: 'a', title: 'credit card', user: null, pass: '1234' },
-  { id: 'b', title: 'computer', user: 'admin', pass: '1234' },
-];
+import { flatMap } from 'rxjs/operators';
+import { fromPromise } from 'rxjs/observable/fromPromise';
 
 @Injectable()
-export class KeyService {
-  keys$: BehaviorSubject<Key[]> = new BehaviorSubject(KEYS);
+export class KeyService extends Dexie {
+  keys$: BehaviorSubject<Key[] | null> = new BehaviorSubject(null);
+  private keys: Dexie.Table<IKey, number>;
 
-  constructor() { }
+  constructor() {
+    super("KeysDatabase");
+    this.version(1).stores({
+      keys: '++id, title',
+    });
+    this.updateList();
+  }
+
+  private updateList(): void {
+    this.keys.toArray().then((keys: Array<Key>) => {
+      this.keys$.next(keys);
+    })
+  }
 
   /**
    * Gets a Key from the system.
-   * @param {string} id
+   * @param {number} id
    * @returns {Observable<Key>}
    */
-  get(id: string): Observable<Key> {
-    return of(this.keys$.getValue().find(key => key.id === id));
+  get(id: number): Observable<Key> {
+    return fromPromise(this.keys.get(id));
   }
 
   /**
@@ -33,37 +41,23 @@ export class KeyService {
    * @returns {Observable<Key>}
    */
   update(key: Key): Observable<Key> {
-    return Observable.create((ob) => {
-      this.keys$.next(this.keys$.getValue().map((item) => {
-        if (item.id === key.id) {
-          ob.next(key);
-          ob.complete();
-          return key;
-        }
-        return item;
+    return this.get(key.id).pipe(flatMap(() => {
+      return fromPromise(this.keys.put(key).then((): Key => {
+        this.updateList();
+        return key;
       }));
-
-      ob.next(null);
-    });
+    }));
   }
 
   /**
    * Removes a Key from the system.
-   * @param {string} id
-   * @returns {Observable<boolean>}
+   * @param {number} id
+   * @returns {Observable<void>}
    */
-  remove(id: string): Observable<boolean> {
-    return this.keys$.pipe(
-      take(1),
-      map((keys: Key[]) => {
-        const res = _.filter(keys, (i: Key) => i.id !== id);
-        if (keys.length !== res.length) {
-          this.keys$.next(res);
-          return true;
-        }
-        return false;
-      }),
-    );
+  remove(id: number): Observable<void> {
+    return fromPromise(this.keys.delete(id).then(() => {
+      this.updateList();
+    }));
   }
 
   /**
@@ -72,12 +66,9 @@ export class KeyService {
    * @returns {Observable<Key>}
    */
   add(key: Key): Observable<Key> {
-    return this.keys$.pipe(
-      take(1),
-      map((keys: Key[]) => {
-        this.keys$.next(keys.concat(key));
-        return key;
-      })
-    )
+    return fromPromise(this.keys.put(key).then((): Key => {
+      this.updateList();
+      return key;
+    }));
   }
 }
