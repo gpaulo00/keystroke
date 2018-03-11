@@ -13,14 +13,6 @@ import {
  * This module imports the needed modules from Angular Material.
  */
 @NgModule({
-  imports: [
-    MatToolbarModule,
-    MatIconModule,
-    MatInputModule,
-    MatCardModule,
-    MatButtonModule,
-    MatGridListModule,
-  ],
   exports: [
     MatToolbarModule,
     MatIconModule,

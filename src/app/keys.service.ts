@@ -2,18 +2,20 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import Dexie from 'dexie';
 
-import { IKey, Key } from './key';
+import { Key } from './key';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { flatMap } from 'rxjs/operators';
 import { fromPromise } from 'rxjs/observable/fromPromise';
 
+const mock_key = '1234';
+
 @Injectable()
 export class KeyService extends Dexie {
   keys$: BehaviorSubject<Key[] | null> = new BehaviorSubject(null);
-  private keys: Dexie.Table<IKey, number>;
+  private keys: Dexie.Table<Key, number>;
 
   constructor() {
-    super("KeysDatabase");
+    super('KeysDatabase');
     this.version(1).stores({
       keys: '++id, title',
     });
@@ -23,7 +25,7 @@ export class KeyService extends Dexie {
   private updateList(): void {
     this.keys.toArray().then((keys: Array<Key>) => {
       this.keys$.next(keys);
-    })
+    });
   }
 
   /**
@@ -32,19 +34,22 @@ export class KeyService extends Dexie {
    * @returns {Observable<Key>}
    */
   get(id: number): Observable<Key> {
-    return fromPromise(this.keys.get(id));
+    return fromPromise(this.keys.get(id)
+      .then((o: Key): Key => Key.load(o, mock_key))
+    );
   }
 
   /**
    * Updates a Key in the system.
-   * @param {Key} key
+   * @param {Key} input
    * @returns {Observable<Key>}
    */
-  update(key: Key): Observable<Key> {
+  update(input: Key): Observable<Key> {
+    const key = Key.save(input, mock_key);
     return this.get(key.id).pipe(flatMap(() => {
       return fromPromise(this.keys.put(key).then((): Key => {
         this.updateList();
-        return key;
+        return input;
       }));
     }));
   }
@@ -62,13 +67,14 @@ export class KeyService extends Dexie {
 
   /**
    * Adds a new key into the system.
-   * @param {Key} key
+   * @param {Key} input
    * @returns {Observable<Key>}
    */
-  add(key: Key): Observable<Key> {
+  add(input: Key): Observable<Key> {
+    const key = Key.save(input, mock_key);
     return fromPromise(this.keys.put(key).then((): Key => {
       this.updateList();
-      return key;
+      return input;
     }));
   }
 }

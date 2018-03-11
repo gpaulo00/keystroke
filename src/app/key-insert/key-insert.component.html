@@ -1,5 +1,5 @@
 
-<div class="extra-top" fxLayoutAlign="center" fxLayout="row">
+<div class="fill-height" fxLayoutAlign="center center" fxLayout="column">
   <mat-card>
     <mat-card-title>
       Nueva Clave
@@ -12,10 +12,10 @@
       <br>
 
       <mat-form-field>
-        <input matInput placeholder="Usuario" [(ngModel)]="key.user">
+        <input matInput placeholder="Usuario" [(ngModel)]="key.data.user">
       </mat-form-field>
       <mat-form-field>
-        <input matInput placeholder="Contraseña" [(ngModel)]="key.pass">
+        <input matInput placeholder="Contraseña" [(ngModel)]="key.data.pass">
       </mat-form-field>
     </mat-card-content>
 

@@ -28,9 +28,18 @@ you should run:
 ng e2e
 ```
 
+## Deployment
+This project includes a *Dockerfile* to easily build [Docker](https://www.docker.com/) images.
+So, you can get a working container with:
+```sh
+docker build -t keystroke .
+docker run --rm -it -p 8080:80 keystroke
+```
+
 ## Built With
 * [Yarn](https://yarnpkg.com/docs/install) - Package Manager
 * [Angular](https://angular.io/) - JavaScript Framework
+* [Angular Material](https://material.angular.io/) - Material Design Components
 
 ## Versioning
 I use [SemVer](http://semver.org/) for versioning.

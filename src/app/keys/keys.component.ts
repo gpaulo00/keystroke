@@ -14,7 +14,9 @@ export class KeysComponent implements OnInit {
 
   ngOnInit() {
     this.keyService.keys$.subscribe(keys => {
-      this.keys = keys;
+      if (keys != null) {
+        this.keys = keys;
+      }
     });
   }
 

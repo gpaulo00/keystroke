@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { KeyService } from '../keys.service';
-import { Key } from '../key';
+import { Key, KeyData } from '../key';
 
 @Component({
   selector: 'app-key-insert',
@@ -18,6 +18,7 @@ export class KeyInsertComponent implements OnInit {
 
   ngOnInit() {
     this.key = new Key();
+    this.key.data = new KeyData();
   }
 
   goBack(): void {
