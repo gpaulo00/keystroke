@@ -6,6 +6,9 @@ import {
   MatInputModule,
   MatCardModule,
   MatButtonModule,
+  MatListModule,
+  MatTableModule,
+  MatCheckboxModule,
   MatGridListModule,
 } from '@angular/material';
 
@@ -19,6 +22,9 @@ import {
     MatInputModule,
     MatCardModule,
     MatButtonModule,
+    MatListModule,
+    MatTableModule,
+    MatCheckboxModule,
     MatGridListModule,
   ],
 })

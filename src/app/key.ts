@@ -2,15 +2,22 @@
 import AES = require('crypto-js/aes');
 import Utf8 = require('crypto-js/enc-utf8');
 
+export class KVPair {
+  key: string;
+  value: string;
+  constructor(key: string, value: string) {
+    this.key = key;
+    this.value = value;
+  }
+}
+
 /**
  * Contains the credentials of a key.
  */
 export class KeyData {
   user?: string;
   pass: string;
-  extra: {
-    [name: string]: string;
-  };
+  extra: KVPair[];
 }
 
 /**

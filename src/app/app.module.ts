@@ -15,13 +15,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { KeyDetailComponent } from './key-detail/key-detail.component';
 import { MaterialModule } from './material/material.module';
 import { KeyInsertComponent } from './key-insert/key-insert.component';
+import { ExtraListComponent } from './extra-list/extra-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     KeysComponent,
     KeyDetailComponent,
-    KeyInsertComponent
+    KeyInsertComponent,
+    ExtraListComponent
   ],
   imports: [
     BrowserModule,

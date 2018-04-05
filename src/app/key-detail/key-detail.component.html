@@ -12,6 +12,9 @@
       <mat-form-field>
         <input matInput placeholder="Contraseña" [(ngModel)]="key.data.pass">
       </mat-form-field>
+
+      <h3>Datos Extra</h3>
+      <app-extra-list [(data)]="key.data.extra"></app-extra-list>
     </mat-card-content>
 
     <mat-card-actions align="end">
